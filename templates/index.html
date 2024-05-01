@@ -2,12 +2,19 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <title>TODO list</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <title>TODO List</title>
 </head>
 <body>
 <div class="container">
-
+    <br>
+    <div class="row">
+        <div class="d-flex justify-content-center">
+            <h1>TODO List</h1>
+        </div>
+    </div>
+    <br>
     <table class="table">
         <thead>
         <tr>
@@ -20,33 +27,16 @@
         <tbody>
         {% for task in tasks %}
             <tr>
-                <th scope="row">{{ task.pk }}</th>
+                <th scope="row"><a href="{% url 'task' task.pk %}">{{ task.pk }}</a></th>
                 <td>{{ task.description }}</td>
-                <td>{{ task.status }}</td>
+                <td>{{ task.get_status_display }}</td>
                 <td>{{ task.deadline|date:"Y-m-d" }}</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
-    <form action="{% url 'add_task' %}" method="post">
-        {% csrf_token %}
-        <div class="mb-3">
-            <label for="taskdescription" class="form-label">Task description</label>
-            <input name="description" type="text" class="form-control" id="taskdescription">
-        </div>
-        <div class="mb-3">
-            <select class="form-select form-select-sm" aria-label="Small select example" name="status">
-                {% for option, value in task.status %}
-                    <option value=" {{ option }}"> {{ value }}</option>
-                {% endfor %}
-            </select>
-        </div>
-        <div class="mb-3">
-            <label for="deadline">Deadline:</label>
-            <input type="date" id="deadline" name="deadline" class="form-control">
-        </div>
-        <input type="submit" class="btn btn-outline-success">
-    </form>
+
+    <a href="{% url 'adding' %}" class="btn btn-outline-success">(+) Add new task</a>
 </div>
 </body>
 </html>
