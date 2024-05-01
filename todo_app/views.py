@@ -1,3 +1,9 @@
 from django.shortcuts import render
 
-# Create your views here.
+from todo_app.models import Task
+
+
+def home_page(request):
+    tasks = Task.objects.all()
+    return render(request, 'index.html', {'tasks': tasks})
+

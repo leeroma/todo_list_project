@@ -5,6 +5,10 @@
     <title>Title</title>
 </head>
 <body>
-
+{% for task in tasks %}
+    <p>{{ task.description }}</p>
+    <p>{{ task.status }}</p>
+    <p>{{ task.deadline }}</p>
+{% endfor %}
 </body>
 </html>
