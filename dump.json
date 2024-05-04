@@ -1,0 +1,65 @@
+[
+{
+    "model": "todo_app.task",
+    "pk": 12,
+    "fields": {
+        "description": "Clean the house",
+        "status": "new",
+        "deadline": "2024-05-06"
+    }
+},
+{
+    "model": "todo_app.task",
+    "pk": 13,
+    "fields": {
+        "description": "Wash the car",
+        "status": "new",
+        "deadline": null
+    }
+},
+{
+    "model": "todo_app.task",
+    "pk": 14,
+    "fields": {
+        "description": "Go to the store",
+        "status": "new",
+        "deadline": "2024-05-08"
+    }
+},
+{
+    "model": "todo_app.task",
+    "pk": 15,
+    "fields": {
+        "description": "Feed the cat",
+        "status": "done",
+        "deadline": null
+    }
+},
+{
+    "model": "todo_app.task",
+    "pk": 16,
+    "fields": {
+        "description": "Cook the dinner",
+        "status": "wip",
+        "deadline": null
+    }
+},
+{
+    "model": "todo_app.task",
+    "pk": 17,
+    "fields": {
+        "description": "Do homework",
+        "status": "wip",
+        "deadline": "2024-05-06"
+    }
+},
+{
+    "model": "todo_app.task",
+    "pk": 18,
+    "fields": {
+        "description": "Call the doctor",
+        "status": "done",
+        "deadline": null
+    }
+}
+]
