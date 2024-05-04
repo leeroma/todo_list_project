@@ -12,8 +12,12 @@
     <form action="{% url 'add_task' %}" method="post">
         {% csrf_token %}
         <div class="mb-3">
+            <label for="tasktitle" class="form-label">Task title</label>
+            <input name="title" type="text" class="form-control" id="tasktitle" required>
+        </div>
+        <div class="mb-3">
             <label for="taskdescription" class="form-label">Task description</label>
-            <input name="description" type="text" class="form-control" id="taskdescription" required>
+            <textarea class="form-control" name="description" id="taskdescription" rows="3"></textarea>
         </div>
         <div class="mb-3">
             <select class="form-select form-select-sm" aria-label="Small select example" name="status">

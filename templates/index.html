@@ -19,6 +19,7 @@
         <thead>
         <tr>
             <th scope="col">#</th>
+            <th scope="col">Title</th>
             <th scope="col">Description</th>
             <th scope="col">Status</th>
             <th scope="col">Deadline</th>
@@ -28,6 +29,7 @@
         {% for task in tasks %}
             <tr>
                 <th scope="row"><a href="{% url 'task' task.pk %}">{{ task.pk }}</a></th>
+                <td>{{ task.title }}</td>
                 <td>{{ task.description }}</td>
                 <td>{{ task.get_status_display }}</td>
                 <td>{{ task.deadline|date:"Y-m-d" }}</td>

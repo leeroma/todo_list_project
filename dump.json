@@ -1,65 +1,72 @@
 [
 {
     "model": "todo_app.task",
-    "pk": 12,
+    "pk": 1,
     "fields": {
-        "description": "Clean the house",
-        "status": "new",
+        "title": "Clean the house",
+        "description": "dust the shelves, wash the floor, wash the curtains ",
+        "status": "wip",
         "deadline": "2024-05-06"
     }
 },
 {
     "model": "todo_app.task",
-    "pk": 13,
+    "pk": 2,
     "fields": {
-        "description": "Wash the car",
+        "title": "Wash the car",
+        "description": "",
         "status": "new",
         "deadline": null
     }
 },
 {
     "model": "todo_app.task",
-    "pk": 14,
+    "pk": 3,
     "fields": {
-        "description": "Go to the store",
-        "status": "new",
+        "title": "Feed pets",
+        "description": "Feed the dog, give medicine to the cat",
+        "status": "done",
+        "deadline": null
+    }
+},
+{
+    "model": "todo_app.task",
+    "pk": 4,
+    "fields": {
+        "title": "Check mail",
+        "description": "Check the mailbox, emails",
+        "status": "wip",
+        "deadline": "2024-05-05"
+    }
+},
+{
+    "model": "todo_app.task",
+    "pk": 5,
+    "fields": {
+        "title": "Write an essay",
+        "description": "Write an essay about importance of learning IT",
+        "status": "wip",
         "deadline": "2024-05-08"
     }
 },
 {
     "model": "todo_app.task",
-    "pk": 15,
+    "pk": 6,
     "fields": {
-        "description": "Feed the cat",
+        "title": "Fix the sink",
+        "description": "Fix the sink in the bathroom",
+        "status": "wip",
+        "deadline": "2024-05-07"
+    }
+},
+{
+    "model": "todo_app.task",
+    "pk": 7,
+    "fields": {
+        "title": "Cook lunch",
+        "description": "Prepare lunch for tomorrow",
         "status": "done",
-        "deadline": null
-    }
-},
-{
-    "model": "todo_app.task",
-    "pk": 16,
-    "fields": {
-        "description": "Cook the dinner",
-        "status": "wip",
-        "deadline": null
-    }
-},
-{
-    "model": "todo_app.task",
-    "pk": 17,
-    "fields": {
-        "description": "Do homework",
-        "status": "wip",
         "deadline": "2024-05-06"
-    }
-},
-{
-    "model": "todo_app.task",
-    "pk": 18,
-    "fields": {
-        "description": "Call the doctor",
-        "status": "done",
-        "deadline": null
     }
 }
 ]

@@ -13,7 +13,8 @@
             Task #{{ task.id }}
         </div>
         <div class="card-body">
-            <h5 class="card-title">{{ task.description }}</h5>
+            <h5 class="card-title">{{ task.title }}</h5>
+            <p class="card-text">{{ task.description }}</p>
             <p class="card-text">{{ task.get_status_display }}</p>
             <p class="card-text">{{ task.deadline|date:"Y-m-d" }}</p>
             <div class="row justify-content-md-center">

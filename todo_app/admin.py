@@ -4,9 +4,9 @@ from todo_app.models import Task
 
 
 class TaskAdmin(admin.ModelAdmin):
-    list_display = ('id', 'description', )
+    list_display = ('id', 'title', )
     list_filter = ('status', )
-    search_fields = ('description', )
+    search_fields = ('title', 'description', )
     exclude = []
 
 

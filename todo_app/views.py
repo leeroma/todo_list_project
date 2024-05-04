@@ -18,9 +18,9 @@ def adding(request):
 def add_task(request):
     data = request.POST
     if data['deadline']:
-        Task.objects.create(description=data['description'], status=data['status'], deadline=data['deadline'])
+        Task.objects.create(title=data['title'], description=data['description'], status=data['status'], deadline=data['deadline'])
     else:
-        Task.objects.create(description=data['description'], status=data['status'])
+        Task.objects.create(title=data['title'], description=data['description'], status=data['status'])
 
     return redirect('home')
 
