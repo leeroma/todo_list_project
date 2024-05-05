@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block title %}Change Status{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="card text-center">
+            <div class="card-header">
+                Task #{{ task.id }}
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">{{ task.title }}</h5>
+                <pre class="card-text">{{ task.description }}</pre>
+                <form action="{% url 'set_new_status' task.id %}" method="post">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-sm-6 offset-md-3">
+                            <select class="form-select" aria-label="Small select example" name="status">
+                                {% for option, value in statuses %}
+                                    <option value="{{ option }}"> {{ value }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                <br>
+                    <p class="card-text">{{ task.deadline|date:"Y-m-d" }}</p>
+                <input type="submit" class="btn btn-outline-success">
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

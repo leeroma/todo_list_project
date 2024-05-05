@@ -34,3 +34,17 @@ def delete_task(request, pk: int):
     task = get_object_or_404(Task, pk=pk)
     task.delete()
     return redirect('home')
+
+
+def changing_status(request, pk: int):
+    task = get_object_or_404(Task, pk=pk)
+    statuses = STATUS_CHOICES
+    return render(request, 'change_status.html', {'task': task, 'statuses': statuses})
+
+
+def set_new_status(request, pk: int):
+    task = get_object_or_404(Task, pk=pk)
+    data = request.POST
+    task.status = data['status']
+    task.save()
+    return redirect('home')

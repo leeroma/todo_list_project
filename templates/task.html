@@ -2,25 +2,32 @@
 {% block title %}Task {{ task.pk }}{% endblock %}
 
 {% block content %}
-<div class="container">
-    <div class="card text-center">
-        <div class="card-header">
-            Task #{{ task.id }}
-        </div>
-        <div class="card-body">
-            <h5 class="card-title">{{ task.title }}</h5>
-            <pre class="card-text">{{ task.description }}</pre>
-            <p class="card-text">{{ task.get_status_display }}</p>
-            <p class="card-text">{{ task.deadline|date:"Y-m-d" }}</p>
-            <div class="row justify-content-md-center">
-                <div class="col col-lg-2">
-                    <a href="{% url 'home' %}" class="btn btn-outline-success">Return</a>
+    <div class="container">
+        <div class="card text-center">
+            <div class="card-header">
+                <div class="row">
+                    <div class="col-md-6 offset-md-3 text-center">
+                        Task #{{ task.id }}
+                    </div>
+                    <div class="col-md-2 offset-md-1">
+                        <a href="{% url 'changing_status' task.id %}" class="btn btn-outline-primary">Change status</a>
+                    </div>
                 </div>
-                <div class="col col-lg-2">
-                    <a href="{% url 'delete_task' task.id %}" class="btn btn-outline-danger">Delete</a>
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">{{ task.title }}</h5>
+                <pre class="card-text">{{ task.description }}</pre>
+                <p class="card-text">{{ task.get_status_display }}</p>
+                <p class="card-text">{{ task.deadline|date:"Y-m-d" }}</p>
+                <div class="row justify-content-md-center">
+                    <div class="col col-lg-2">
+                        <a href="{% url 'home' %}" class="btn btn-outline-success">Return</a>
+                    </div>
+                    <div class="col col-lg-2">
+                        <a href="{% url 'delete_task' task.id %}" class="btn btn-outline-danger">Delete</a>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 {% endblock %}
