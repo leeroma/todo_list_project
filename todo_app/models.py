@@ -9,8 +9,8 @@ STATUS_CHOICES = (
 
 
 class Task(models.Model):
-    title = models.CharField('Название', default='Без названия', max_length=300, null=False, blank=False)
-    description = models.TextField('Описание', max_length=3000, null=False, blank=False)
+    title = models.CharField('Название', max_length=300, null=False, blank=False)
+    description = models.TextField('Описание', max_length=3000, null=True, blank=True)
     status = models.CharField('Статус', choices=STATUS_CHOICES, default='new', max_length=15, null=False)
     deadline = models.DateField('Дата выполнения', blank=True, default=None, null=True)
 

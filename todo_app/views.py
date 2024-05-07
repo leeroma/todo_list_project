@@ -1,5 +1,9 @@
+from django.db import transaction
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect, get_object_or_404
+from django.urls import reverse
 
+from todo_app.forms import TaskForm
 from todo_app.models import Task, STATUS_CHOICES
 
 
@@ -10,19 +14,16 @@ def home_page(request):
     return render(request, 'index.html', {'tasks': tasks})
 
 
-def adding(request):
+def create_task(request):
+    form = TaskForm()
     statuses = STATUS_CHOICES
-    return render(request, 'add_task.html', {'statuses': statuses})
+    if request.method == 'POST':
+        form = TaskForm(request.POST)
+        if form.is_valid():
+            task = form.save()
+            return HttpResponseRedirect(reverse('task', args=[task.pk]))
 
-
-def add_task(request):
-    data = request.POST
-    if data['deadline']:
-        Task.objects.create(title=data['title'], description=data['description'], status=data['status'], deadline=data['deadline'])
-    else:
-        Task.objects.create(title=data['title'], description=data['description'], status=data['status'])
-
-    return redirect('home')
+    return render(request, 'create_task.html', context={'form': form, 'statuses': statuses})
 
 
 def task(request, pk: int):
@@ -36,15 +37,18 @@ def delete_task(request, pk: int):
     return redirect('home')
 
 
-def changing_status(request, pk: int):
+def edit_task(request, pk: int):
     task = get_object_or_404(Task, pk=pk)
-    statuses = STATUS_CHOICES
-    return render(request, 'change_status.html', {'task': task, 'statuses': statuses})
+    form = TaskForm(initial=task.__dict__)
+    if request.method == 'POST':
+        form = TaskForm(request.POST)
+        if form.is_valid():
+            with transaction.atomic():
+                task.title = form.cleaned_data['title'] or task.title
+                task.description = form.cleaned_data['description'] or task.description
+                task.status = form.cleaned_data['status'] or task.status
+                task.deadline = form.cleaned_data['deadline'] or task.deadline
+                task.save()
+            return HttpResponseRedirect(reverse('task', args=[task.pk]))
 
-
-def set_new_status(request, pk: int):
-    task = get_object_or_404(Task, pk=pk)
-    data = request.POST
-    task.status = data['status']
-    task.save()
-    return redirect('home')
+    return render(request, 'edit_task.html', context={'task': task, 'form': form})

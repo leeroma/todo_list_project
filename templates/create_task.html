@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load bootstrap5 %}
+{% block title %}New Task{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <form action="{% url 'create_task' %}" method="post" class="form">
+            {% csrf_token %}
+            <br>
+            {% bootstrap_form form %}
+            {% buttons %}
+                <button type="submit" class="btn btn-outline-success">Submit</button>
+            {% endbuttons %}
+        </form>
+    </div>
+{% endblock %}

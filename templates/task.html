@@ -10,7 +10,7 @@
                         Task #{{ task.id }}
                     </div>
                     <div class="col-md-2 offset-md-1">
-                        <a href="{% url 'changing_status' task.id %}" class="btn btn-outline-primary">Change status</a>
+                        <a href="{% url 'edit_task' task.id %}" class="btn btn-outline-primary">Edit task</a>
                     </div>
                 </div>
             </div>
@@ -24,7 +24,32 @@
                         <a href="{% url 'home' %}" class="btn btn-outline-success">Return</a>
                     </div>
                     <div class="col col-lg-2">
-                        <a href="{% url 'delete_task' task.id %}" class="btn btn-outline-danger">Delete</a>
+                        <a class="btn btn-outline-danger" data-bs-toggle="modal"
+                           data-bs-target="#staticBackdrop">Delete</a>
+                    </div>
+                    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
+                         tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Delete task {{ task.id }}</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <h3>Are you sure?</h3>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                                        close
+                                    </button>
+                                    <form action="{% url 'delete_task' task.id %}" method="post">
+                                        {% csrf_token %}
+                                        <button type="submit" class="btn btn-outline-danger">Submit</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
