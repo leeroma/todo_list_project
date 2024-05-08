@@ -10,7 +10,7 @@ from todo_app.models import Task, STATUS_CHOICES
 def home_page(request):
     tasks = Task.objects.all()
     if not tasks:
-        return redirect('adding')
+        return redirect('create_task')
     return render(request, 'index.html', {'tasks': tasks})
 
 
@@ -52,3 +52,13 @@ def edit_task(request, pk: int):
             return HttpResponseRedirect(reverse('task', args=[task.pk]))
 
     return render(request, 'edit_task.html', context={'task': task, 'form': form})
+
+
+def delete_tasks(request):
+    pks = request.POST.keys()
+    for pk in pks:
+        if pk.isnumeric():
+            task = get_object_or_404(Task, pk=int(pk))
+            task.delete()
+
+    return redirect('home')

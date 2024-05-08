@@ -2,33 +2,38 @@
 {% block title %}Home{% endblock %}
 
 {% block content %}
-<div class="container">
-    <br>
-    <div class="row">
-        <div class="d-flex justify-content-center">
-            <h1>TODO List</h1>
+    <div class="container">
+        <br>
+        <div class="row">
+            <div class="d-flex justify-content-center">
+                <h1>TODO List</h1>
+            </div>
         </div>
+        <br>
+        <form action="{% url 'delete_tasks' %}" method="post">
+        {% csrf_token %}
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Deadline</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for task in tasks %}
+                    <tr>
+                        <th scope="row"><input type="checkbox" id="deleteTask" name="{{ task.pk }}">
+                            <label for="deleteTask"><a href="{% url 'task' task.pk %}">{{ task.pk }}</a></label></th>
+                        <td>{{ task.title }}</td>
+                        <td>{{ task.get_status_display }}</td>
+                        <td>{{ task.deadline|date:"Y-m-d" }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        <button type="submit" class="btn btn-outline-danger">Delete</button>
+        </form>
     </div>
-    <br>
-    <table class="table">
-        <thead>
-        <tr>
-            <th scope="col">#</th>
-            <th scope="col">Title</th>
-            <th scope="col">Status</th>
-            <th scope="col">Deadline</th>
-        </tr>
-        </thead>
-        <tbody>
-        {% for task in tasks %}
-            <tr>
-                <th scope="row"><a href="{% url 'task' task.pk %}">{{ task.pk }}</a></th>
-                <td>{{ task.title }}</td>
-                <td>{{ task.get_status_display }}</td>
-                <td>{{ task.deadline|date:"Y-m-d" }}</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-</div>
 {% endblock %}

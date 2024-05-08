@@ -1,6 +1,6 @@
 from django.urls import path
 
-from todo_app.views import home_page, create_task, task, delete_task, edit_task
+from todo_app.views import home_page, create_task, task, delete_task, edit_task, delete_tasks
 
 urlpatterns = [
     path('', home_page, name='home'),
@@ -8,5 +8,6 @@ urlpatterns = [
     path('task/<int:pk>', task, name='task'),
     path('delete_task/<int:pk>', delete_task, name='delete_task'),
     path('edit_task/<int:pk>', edit_task, name='edit_task'),
+    path('delete_tasks', delete_tasks, name='delete_tasks'),
 
 ]
